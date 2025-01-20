@@ -1,17 +1,14 @@
 import express, { Express, Request, Response } from "express";
-
 import cors from "cors";
-// import path from "path";
 import productRouter from "./routes/productRoutes";
 import userRouter from "./routes/userRoutes";
 import orderRouter from "./routes/orderRoutes";
-
-// import connectToMongo from "./db/database";
-const PORT = process.env.PORT || 3001;
 import errorHandleMiddleware from "./middleware/Error";
 import cookie_parser from "cookie-parser";
 import bodyParser from "body-parser";
 import { PrismaClient } from "@prisma/client";
+
+const PORT = process.env.PORT || 3001;
 // const dotenv = require('dotenv')
 
 const app: Express = express();
@@ -35,15 +32,13 @@ app.use(cors(options));
 app.use(express.json());
 app.use(cookie_parser());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(fileupload());
 
 // set env var
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({ path: "./config.env" });
 }
 
-// connect to db
-
+// Initiate Prisma Client and export it
 export const prismaClient = new PrismaClient({
   log: ["query", "info", "warn", "error"],
 });

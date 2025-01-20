@@ -45,11 +45,4 @@ router
   .put(AuthenticateUser, AuthorizeRole("ADMIN"), updateProduct)
   .delete(AuthenticateUser, AuthorizeRole("ADMIN"), deleteProduct);
 
-// router.route("/review").put(AuthenticateUser, createProductReview);
-
-// router
-//   .route("/reviews")
-//   .get(getProductReviews)
-//   .delete(AuthenticateUser, deleteReview);
-
 export default router;
