@@ -4,8 +4,7 @@ import cors from "cors";
 // import path from "path";
 import productRouter from "./routes/productRoutes";
 import userRouter from "./routes/userRoutes";
-// import paymentRouter from "./routes/paymentRoutes";
-// import orderRouter from "./routes/orderRoutes";
+import orderRouter from "./routes/orderRoutes";
 
 // import connectToMongo from "./db/database";
 const PORT = process.env.PORT || 3001;
@@ -13,8 +12,6 @@ import errorHandleMiddleware from "./middleware/Error";
 import cookie_parser from "cookie-parser";
 import bodyParser from "body-parser";
 import { PrismaClient } from "@prisma/client";
-// import fileupload from "express-fileupload";
-// import cloudinary from "cloudinary";
 // const dotenv = require('dotenv')
 
 const app: Express = express();
@@ -57,8 +54,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 app.use("/api/", productRouter);
 app.use("/api/", userRouter);
-// app.use("/api/", paymentRouter);
-// app.use("/api/", orderRouter);
+app.use("/api/", orderRouter);
 
 // error handle middleware
 app.use(errorHandleMiddleware);
